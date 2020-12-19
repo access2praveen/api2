@@ -12,6 +12,12 @@ class Account(object):
 
 
     def create_user(self, *args, **kwargs):
+        '''
+
+        :param args:
+        :param kwargs:
+        :return:
+        '''
         version = self.VERSION
         resource = "/User"
         method = "POST"
