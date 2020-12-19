@@ -20,6 +20,8 @@ class TestCreateUser:
 
         global user_id
         global token
+        global username
+        global password
         username = self.randomString()
         print("username:", username)
         password = "User!2345"
@@ -32,7 +34,7 @@ class TestCreateUser:
 
 
     def test_get_all_books(self):
-        book = Book(self.BASE_URL);
+        book = Book(self.BASE_URL)
         return book.get_books()
 
     def test_getbook_by_isbn(self):
@@ -87,5 +89,7 @@ class TestCreateUser:
         delbook = Book(self.BASE_URL)
         response = delbook.delete_books(user_id, token)
 
-    #def test_delete_user(self):Account.delete_user(userid=user_id,token=token)
+    def test_delete_user(self):
+        account = Account(self.BASE_URL,username,password)
+        account.delete_user(user_id,token)
 
