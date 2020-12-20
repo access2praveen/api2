@@ -1,29 +1,58 @@
-# [FOX SPORTS Australia & Streamotion Pty Ltd](http://www.foxsports.com.au)
+#Book Store API Testing
 
-## Welcome to the Platform QA test
+A python3.9 framework to test Bookstore API functions 
+This implementation extensively uses Python's `requests` 
+for sending RestAPI requests and capture responses.
 
-### Introduction
+This script creates random users and extract user-id and token from response
+and uses that information to create/update and Delete books
 
-In this test, we are looking at your ability to write elegant and efficient test autoamtion for REST API. 
+The following modules needs to be installed 
 
-Documentation link to a sample Book Store API [https://demoqa.com/swagger/].
 
-### Task
 
-Please create an automated API test suite for all BookStore endpoints [POST/GET/PUT/DELETE] in your preferred language. Test suite should have following features
 
-* Cover positive, negative and error scenarios.
-*	Integration between endpoints by passing values [Create a book, Update it and then delete the book].
-*	Add descriptive assertions for each test.
-*	Add suitable test reporting tool for report.
-*	Add data setup and clean-up properly for repeated execution.
-* Follow design patterns for maintainability, repeatability and robustness.
+#### Example Response ####
 
-For more information about the usage of endpoints, please check book store website [https://demoqa.com/books].
+The recommended way to execute this application is to first set up a Python 3.9 virtual environment, 
+and use the requirements.txt file with pip to install correct versions of packages.
 
-### Rules
+The Project directory contains below files
+```
+account.py - contains class methods related to user
+book.py  - contains class methods related to Book 
+test_book_functions - contains test scripts to test book api's 
+report.html - Generates test report 
+```
 
-**Don't:**
+The command to Run the test suite
 
-* Commit directly to the master branch; use a feature branch instead.
-* Spend longer than 4 hours on the test. It's not timed, but its intended to be a simple test.
+```
+C:\Users\praveen\PycharmProjects\Fox>pytest -sv test_create_user.py --html=report.html
+========================================= test session starts =========================================
+platform win32 -- Python 3.9.0, pytest-6.2.1, py-1.10.0, pluggy-0.13.1 -- c:\users\praveen\appdata\local\programs\python\python39\python.exe
+cachedir: .pytest_cache
+metadata: {'Python': '3.9.0', 'Platform': 'Windows-10-10.0.18362-SP0', 'Packages': {'pytest': '6.2.1', 'py': '1.10.0', 'pluggy': '0.13.1'}, 'Plugins': {'html': '3.1.1', 'metadata': '1.11.0'}}
+rootdir: C:\Users\praveen\PycharmProjects\Fox
+plugins: html-3.1.1, metadata-1.11.0
+collected 9 items
+
+test_create_user.py::TestCreateUser::test_create_newuser username: tiqjmvczet
+PASSED
+test_create_user.py::TestCreateUser::test_get_all_books PASSED
+test_create_user.py::TestCreateUser::test_getbook_by_isbn PASSED
+test_create_user.py::TestCreateUser::test_create_book PASSED
+test_create_user.py::TestCreateUser::test_update_book_isbn PASSED
+test_create_user.py::TestCreateUser::test_delete_book_by_isbn PASSED
+test_create_user.py::TestCreateUser::test_delete_book_by_invalid_isbn XFAIL
+test_create_user.py::TestCreateUser::test_delete_all_books PASSED
+test_create_user.py::TestCreateUser::test_delete_user PASSED
+```
+
+The XFAIL refers to Expected failure scenario   
+
+
+###References ###
+
+https://docs.pytest.org/en/stable/contents.html
+https://requests.readthedocs.io/en/master/
